@@ -6,7 +6,7 @@ export function Breadcrumb({ crumbs }: { crumbs: CrumbType[] }) {
       {crumbs.map((crumb: CrumbType, i: number) => {
         if (crumb) {
           return (
-            <div>
+            <div key={i}>
               <span>
                 <Link to={crumb.link}>{crumb.desc.toUpperCase()}</Link>
               </span>{" "}

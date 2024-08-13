@@ -5,12 +5,14 @@ declare namespace JSX {
 }
 
 interface ProductType {
-  id: number;
+  id: string;
   imgSrc: string;
   productCategory: string;
   productType: string;
   productName: string;
   productPrice: number;
+  productStock: number;
+  imgSec?: [string, string, string];
 }
 
 interface CrumbType {
@@ -20,5 +22,10 @@ interface CrumbType {
 
 interface FilterType {
   desc: string;
-  options: string[] | number[];
+  options: (string | number)[];
+}
+
+interface BasketType {
+  product: ProductType;
+  selectedQnt: number;
 }

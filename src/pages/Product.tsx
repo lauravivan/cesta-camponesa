@@ -1,16 +1,22 @@
 import { useParams, useLocation } from "react-router-dom";
-import { Breadcrumb, Card, Footer, Header } from "../components";
+import { Breadcrumb, Card, Footer, Header, SelectQnt } from "../components";
 import { products } from "../util";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { RefObject, useEffect, useRef, useState } from "react";
+import { getBasket, setBasket } from "../util/localStorage";
 
 export function Product() {
   const location = useLocation();
   const { id } = useParams();
-
-  const product = products.filter((prod) => prod.id === Number(id))[0];
-
+  const selectQntRef: RefObject<HTMLDivElement> = useRef(null);
+  const product = products.filter((prod) => prod.id === id)[0];
   const firstPage = location.pathname.split("/")[1];
+  const [basketState, setBasketState] = useState(getBasket());
+
+  useEffect(() => {
+    setBasket(basketState);
+  }, [basketState]);
 
   const crumbs = [
     {
@@ -51,6 +57,38 @@ export function Product() {
     (prod) => prod.productCategory === product.productCategory
   );
 
+  const handleCartAddition = () => {
+    let newQnt: number = 0;
+
+    if (selectQntRef && selectQntRef.current) {
+      newQnt = Number(selectQntRef.current.innerText);
+    }
+
+    setBasketState((prevVal) => {
+      const basket = [...prevVal];
+
+      const productFind = basket.filter((p) => p.product.id === product.id)[0];
+
+      if (productFind) {
+        for (const b of basket) {
+          if (b.product.id === product.id) {
+            const sum = newQnt + b.selectedQnt;
+            if (sum <= b.product.productStock) {
+              b.selectedQnt += newQnt;
+            }
+          }
+        }
+      } else {
+        basket.push({
+          product: product,
+          selectedQnt: newQnt,
+        });
+      }
+
+      return basket;
+    });
+  };
+
   return (
     <>
       <Header />
@@ -80,21 +118,21 @@ export function Product() {
               <span>Preço: R${product.productPrice},00</span>
               <div>
                 <span>Quantidade:</span>
-                <form>
-                  <select></select>
-                </form>
+                <SelectQnt qnt={product.productStock} ref={selectQntRef} />
               </div>
             </div>
             <div>
-              <button>Colocar na cesta</button>
+              <button onClick={handleCartAddition}>Colocar na cesta</button>
             </div>
           </div>
         </div>
         <div>
           <h3>VEJA OUTROS PRODUTOS DA MESMA CATEGORIA</h3>
           <Carousel responsive={responsive}>
-            {productsSameCategory.map((prod) => (
-              <Card product={prod} />
+            {productsSameCategory.map((prod, i) => (
+              <div key={i}>
+                <Card product={prod} />
+              </div>
             ))}
           </Carousel>
         </div>

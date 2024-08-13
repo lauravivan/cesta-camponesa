@@ -6,6 +6,7 @@ import { useState } from "react";
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
+  const [isSearchShown, setIsSearchShown] = useState(false);
 
   const handleProductsHover = () => {
     setShowMenu(true);
@@ -19,16 +20,24 @@ export function Header() {
     navigate(`/produtos/${category}`);
   };
 
-  const categories = productCategories.map((category) => (
-    <li onClick={handleCategoryClick.bind(self, category)}>{category}</li>
+  const categories = productCategories.map((category, i) => (
+    <li key={i} onClick={handleCategoryClick.bind(self, category)}>
+      {category}
+    </li>
   ));
+
+  const handleSearchHover = () => {
+    setIsSearchShown((prevVal) => !prevVal);
+  };
 
   return (
     <>
       <header className="header">
-        <div className="header__logo-container">
-          <img className="header__logo" src="logo.png" />
-        </div>
+        <Link to={"/"}>
+          <div className="header__logo-container">
+            <img className="header__logo" src="logo.png" />
+          </div>
+        </Link>
         <ul>
           <li className="header__products" onMouseEnter={handleProductsHover}>
             <Link to={"/produtos"}>PRODUTOS</Link>
@@ -47,13 +56,26 @@ export function Header() {
             <ion-icon name="person-sharp"></ion-icon>
           </div>
           <div>
-            <ion-icon name="search-sharp"></ion-icon>
+            <div
+              className={`header__search-container ${
+                isSearchShown ? "header__search-container--show" : ""
+              }`}
+            >
+              <form action="/produtos" role="search" method="GET">
+                <input type="search" name="query" />
+              </form>
+            </div>
+            <div onMouseEnter={handleSearchHover}>
+              <ion-icon name="search-sharp"></ion-icon>
+            </div>
           </div>
           <div>
             <ToggleBtn />
           </div>
           <div>
-            <ion-icon name="basket-sharp"></ion-icon>
+            <Link to={"/cesta"}>
+              <ion-icon name="basket-sharp"></ion-icon>
+            </Link>
           </div>
         </div>
       </header>

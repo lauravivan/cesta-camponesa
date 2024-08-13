@@ -1,9 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./assets/css/main.css";
-import { Homepage, Products, Product } from "./pages";
+import { Homepage, Products, Product, Cart } from "./pages";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { products } from "./util";
+import { ThemeProvider } from "./context/ThemeContext/ThemeProvider";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +23,16 @@ const router = createBrowserRouter([
     path: "/produtos/:category/:id",
     element: <Product />,
   },
+  {
+    path: "/cesta",
+    element: <Cart />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>
 );

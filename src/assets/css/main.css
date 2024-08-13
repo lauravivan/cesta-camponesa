@@ -6,6 +6,12 @@
   width: 100%;
   height: 100%;
 }
+.header__search-container {
+  display: none;
+}
+.header__search-container--show {
+  display: block;
+}
 
 .menu-dropdown {
   display: none;
