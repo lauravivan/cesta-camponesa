@@ -1,0 +1,42 @@
+.products {
+  padding: 40px 20px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    &--buttons {
+      display: flex;
+      column-gap: 20px;
+    }
+  }
+
+  &__products {
+    &--title-container {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__pagination-container {
+    margin: 50px 0;
+  }
+
+  &__filter-container {
+    display: flex;
+    column-gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  &__filter-btn__btn,
+  &__sort-btn {
+    background-color: $gray;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__sort-btn:hover {
+    background-color: $red;
+  }
+}

@@ -1,10 +1,10 @@
 export function Footer() {
   return (
     <footer className="footer">
-      <div>
+      <div className="footer__info">
         <div>
-          <h3>FALE CONOSCO</h3>
-          <ul>
+          <h3 className="footer__heading">FALE CONOSCO</h3>
+          <ul className="footer__list">
             <li>
               <span>(27)99987-3360 / (27) 99783-9747</span>
               <ion-icon name="logo-whatsapp"></ion-icon>
@@ -20,8 +20,8 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h3>SOBRE NÓS</h3>
-          <ul>
+          <h3 className="footer__heading">SOBRE NÓS</h3>
+          <ul className="footer__list">
             <li>
               <a href="#history">Nossa história</a>
             </li>
@@ -34,7 +34,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div>
+      <div className="footer__privacy">
         <span>Política de privacidade</span>
         <div className="footer__logo-container">
           <img className="footer__logo" src="logo2.png" />

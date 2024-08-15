@@ -1,16 +1,26 @@
+import { useState } from "react";
 import { Header, Footer } from "../components";
 
 export function Homepage() {
+  const [showPush, setShowPush] = useState(false);
+
+  const handleNewsletterBtnClick = () => {
+    setShowPush((prev) => !prev);
+  };
+
   return (
     <>
       <Header />
       <main className="homepage">
-        <div>
+        <div className="homepage__main-img-container">
           <img src="homepage-main.jpg" />
         </div>
-        <section id="about-us">
-          <h3>QUEM SOMOS</h3>
+        <section
+          className="homepage__section homepage__section--about-us"
+          id="about-us"
+        >
           <div>
+            <h3 className="homepage__section--title">QUEM SOMOS</h3>
             <div>
               <p>
                 Somos um movimento organizado do campesinato, constituído por
@@ -44,12 +54,19 @@ export function Homepage() {
                 produtos que contem história, sabor, qualidade, carinho e amor.
               </p>
             </div>
-            <div>
-              <img src="about-us.jpg" />
-            </div>
+          </div>
+
+          <div>
+            <img src="about-us.jpg" />
           </div>
         </section>
-        <section id="call">
+        <section
+          className="homepage__section homepage__section--call"
+          id="call"
+        >
+          <div>
+            <ion-icon name="hand-right-sharp"></ion-icon>
+          </div>
           <span>
             O MPA Nasceu da pressão da base organizada; nasceu da luta dos
             agricultores e agricultoras para resistir na roça; nasceu para lutar
@@ -58,8 +75,11 @@ export function Homepage() {
             Agricultura Brasileira.
           </span>
         </section>
-        <section id="history">
-          <h3>NOSSA HISTÓRIA</h3>
+        <section
+          className="homepage__section homepage__section--history"
+          id="history"
+        >
+          <h3 className="homepage__section--title">NOSSA HISTÓRIA</h3>
           <div>
             <div>
               <p>
@@ -80,7 +100,7 @@ export function Homepage() {
               </p>
             </div>
             <figure>
-              <img />
+              <img src="history-1.webp" />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -89,7 +109,7 @@ export function Homepage() {
           </div>
           <div>
             <figure>
-              <img />
+              <img src="history-2.webp" />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -128,7 +148,7 @@ export function Homepage() {
               </p>
             </div>
             <figure>
-              <img />
+              <img src="history-3.webp" />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -136,8 +156,11 @@ export function Homepage() {
             </figure>
           </div>
         </section>
-        <section id="gathering">
-          <h3>ENCONTROS NACIONAIS</h3>
+        <section
+          className="homepage__section homepage__section--meetings"
+          id="meetings"
+        >
+          <h3 className="homepage__section--title">ENCONTROS NACIONAIS</h3>
           <div>
             <div>
               <span>1º</span>
@@ -168,34 +191,73 @@ export function Homepage() {
             </div>
           </div>
         </section>
-        <section id="how-it-works">
-          <h3>COMO FUNCIONA</h3>
+        <section
+          className="homepage__section homepage__section--how-it-works"
+          id="how-it-works"
+        >
+          <h3 className="homepage__section--title">COMO FUNCIONA</h3>
           <div>
             <figure>
-              <img src="" alt="" />
-              <figcaption></figcaption>
+              <div>
+                <ion-icon name="fast-food-sharp"></ion-icon>
+              </div>
+              <figcaption>
+                <span>ESCOLHA SEUS PRODUTOS</span>
+                <span>
+                  Escolha os produtos disponíveis na semana para a sua cidade
+                </span>
+              </figcaption>
             </figure>
             <figure>
-              <img src="" alt="" />
-              <figcaption></figcaption>
+              <div>
+                <ion-icon name="cart-sharp"></ion-icon>
+              </div>
+              <figcaption>
+                <span>FINALIZE SUA COMPRA</span>
+                <span>Criar um texto aqui</span>
+              </figcaption>
             </figure>
             <figure>
-              <img src="" alt="" />
-              <figcaption></figcaption>
+              <div>
+                <ion-icon name="basket-sharp"></ion-icon>
+              </div>
+              <figcaption>
+                <span>MONTAMOS A SUA CESTA</span>
+                <span>Nós iremos SEPARAR os produtos e MONTAR a sua CESTA</span>
+              </figcaption>
             </figure>
             <figure>
-              <img src="" alt="" />
-              <figcaption></figcaption>
+              <div>
+                <ion-icon name="walk-sharp"></ion-icon>
+              </div>
+              <figcaption>
+                <span>ENTREGAMOS NA SUA CASA</span>
+                <span>Nós iremos entergar sua CESTA na sua casa</span>
+              </figcaption>
             </figure>
           </div>
         </section>
-        <section id="newsletter">
+        <section
+          className="homepage__section homepage__section--newsletter"
+          id="newsletter"
+        >
           <span>DESEJA RECEBER NOVIDADES?</span>
           <form>
-            <input placeholder="Seu nome" />
-            <input placeholder="Seu e-mail" />
-            <button>Receber</button>
+            <div>
+              <input className="input" placeholder="Seu nome" />
+              <input className="input" placeholder="Seu e-mail" />
+            </div>
+            <button
+              className="button"
+              type="button"
+              onClick={handleNewsletterBtnClick}
+            >
+              Receber
+            </button>
           </form>
+          {showPush && (
+            <div className="push">Essa função ainda está em construção.</div>
+          )}
         </section>
       </main>
       <Footer />

@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  column-gap: 15px;
+
+  &__navigation,
+  &__page-number {
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  &__navigation {
+    background-color: $gray;
+  }
+
+  &__page-number:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &__page-number {
+    &--page-selected {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}

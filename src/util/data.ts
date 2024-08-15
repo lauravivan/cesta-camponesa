@@ -16,12 +16,12 @@ export const productCategories: string[] = [
 
 export const productTypes: string[] = ["lata"];
 
-export const products: ProductType[] = Array.from({ length: 40 }, () => ({
+export const products: ProductType[] = Array.from({ length: 55 }, () => ({
   id: uuidv4(),
-  imgSrc: "teste",
+  imgSrc: "biscuit.jpg",
   productCategory: productCategories[2],
   productType: "teste",
-  productName: "teste",
+  productName: `teste-${Math.floor(Math.random() * 100000)}`,
   productPrice: 30,
   productStock: 10,
 }));

@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom";
 
-export function Breadcrumb({ crumbs }: { crumbs: CrumbType[] }) {
+interface BreadcrumbType {
+  crumbs: CrumbType[];
+}
+
+export function Breadcrumb({ crumbs }: BreadcrumbType) {
   return (
-    <div>
-      {crumbs.map((crumb: CrumbType, i: number) => {
-        if (crumb) {
-          return (
-            <div key={i}>
-              <span>
-                <Link to={crumb.link}>{crumb.desc.toUpperCase()}</Link>
-              </span>{" "}
-              {""}
-              {crumbs.length - 1 !== i ? "/" : ""}
-            </div>
-          );
-        }
-      })}
+    <div className="breadcrumb">
+      {crumbs.map((crumb, i) => (
+        <div key={i}>
+          <span>
+            <Link to={crumb.link}>{crumb.desc.toUpperCase()}</Link>
+          </span>{" "}
+          {crumbs.length - 1 !== i ? "/" : ""}
+        </div>
+      ))}
     </div>
   );
 }

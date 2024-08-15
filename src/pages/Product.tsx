@@ -92,12 +92,12 @@ export function Product() {
   return (
     <>
       <Header />
-      <main>
+      <main className="product">
         <Breadcrumb crumbs={crumbs} />
-        <div>
+        <div className="product__info">
           <div>
             <div>
-              <img />
+              <img src={product.imgSrc} />
             </div>
             <div>
               <div>

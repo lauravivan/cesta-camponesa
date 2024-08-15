@@ -1,0 +1,32 @@
+.card {
+  cursor: pointer;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  &__img-container {
+    // max-width: 400px;
+  }
+
+  &__category {
+    text-transform: uppercase;
+
+    &--category {
+      font-weight: 900;
+    }
+  }
+
+  &__name {
+    text-transform: uppercase;
+  }
+
+  &__price {
+    &--price {
+      font-weight: 900;
+      font-size: 20px;
+    }
+  }
+}

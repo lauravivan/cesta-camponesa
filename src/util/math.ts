@@ -1,25 +1,62 @@
-import { products } from "./data";
+import { getBasket } from "./localStorage";
 import { DEFAULT_PRODUCTS_PER_PAGE } from "./variable";
 
-export function getProductsPerPage() {
-  const totalOfProducts = products.length;
+function getProductsInPage(pageNumber: number, numberOfProducts: number) {
   const productsPerPage = [];
 
-  if (totalOfProducts <= DEFAULT_PRODUCTS_PER_PAGE) {
-    productsPerPage.push(totalOfProducts);
+  if (numberOfProducts <= DEFAULT_PRODUCTS_PER_PAGE) {
+    productsPerPage.push({
+      firstIndex: 0,
+      lastIndex: numberOfProducts,
+    });
   } else {
-    let total = totalOfProducts;
-    let difference = total - DEFAULT_PRODUCTS_PER_PAGE;
-    let remainingValue = total - difference;
-    productsPerPage.push(remainingValue);
+    let productsPerPageIndex = 0;
+    let total = numberOfProducts; //30
+    let remainingProducts = total - DEFAULT_PRODUCTS_PER_PAGE; //30 - 20 = 10
+    let productsInPage = total - remainingProducts; //30 - 10 = 20
 
-    while (difference !== 0) {
-      total = difference;
-      difference = difference - DEFAULT_PRODUCTS_PER_PAGE;
-      remainingValue = total - difference;
-      productsPerPage.push(remainingValue);
+    productsPerPage.push({
+      firstIndex: 0,
+      lastIndex: productsInPage,
+    });
+
+    while (remainingProducts !== 0) {
+      total = remainingProducts; //10
+      remainingProducts = Math.max(total - DEFAULT_PRODUCTS_PER_PAGE, 0); // 10 - 20 = -10 = 0
+      productsInPage = total - remainingProducts; // 10 - 0 = 10
+      const firstIndex: number =
+        productsPerPage[productsPerPageIndex].lastIndex;
+
+      productsPerPage.push({
+        firstIndex: firstIndex,
+        lastIndex: firstIndex + productsInPage,
+      });
+
+      productsPerPageIndex += 1;
     }
   }
 
-  return productsPerPage;
+  const pageNumberIndex = pageNumber - 1;
+
+  return productsPerPage[pageNumberIndex];
+}
+
+export function getBasketProductsInPage(pageNumber: number) {
+  const basketProducts = getBasket();
+  const { firstIndex, lastIndex } = getProductsInPage(
+    pageNumber,
+    basketProducts.length
+  );
+  return basketProducts.slice(firstIndex, lastIndex);
+}
+
+export function getAllProductsInPage(
+  products: ProductType[],
+  pageNumber: number
+) {
+  const { firstIndex, lastIndex } = getProductsInPage(
+    pageNumber,
+    products.length
+  );
+  return products.slice(firstIndex, lastIndex);
 }

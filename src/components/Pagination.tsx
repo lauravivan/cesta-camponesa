@@ -1,14 +1,19 @@
-import { forwardRef, useState } from "react";
-import { QNT_OF_PAGES } from "../util";
+import { useEffect, useState } from "react";
 
-export const Pagination = forwardRef<HTMLDivElement>(function Pagination(
-  _,
-  ref
-) {
-  const pages = Array(QNT_OF_PAGES)
+interface PaginationType {
+  handlePageChange: (page: number) => void;
+  qntOfPages: number;
+}
+
+export function Pagination({ handlePageChange, qntOfPages }: PaginationType) {
+  const pages = Array(qntOfPages)
     .fill(0)
     .map((_, i) => i + 1);
   const [pageSelected, setPageSelected] = useState(1);
+
+  useEffect(() => {
+    handlePageChange(pageSelected);
+  }, [pageSelected]);
 
   const handlePageDec = () => {
     setPageSelected((prevPage) => {
@@ -23,7 +28,7 @@ export const Pagination = forwardRef<HTMLDivElement>(function Pagination(
   const handlePageInc = () => {
     setPageSelected((prevPage) => {
       const page = prevPage + 1;
-      if (page < pages[pages.length - 1]) {
+      if (page <= pages.length) {
         return page;
       }
 
@@ -32,16 +37,29 @@ export const Pagination = forwardRef<HTMLDivElement>(function Pagination(
   };
 
   return (
-    <div>
-      <div onClick={handlePageDec}>Anterior</div>
+    <div className="pagination">
+      <div className="pagination__navigation" onClick={handlePageDec}>
+        Anterior
+      </div>
       {pages.map((page, i) => (
-        <div key={i} onClick={() => setPageSelected(page)} ref={ref}>
+        <div
+          className={`pagination__page-number ${
+            page === pageSelected
+              ? "pagination__page-number--page-selected"
+              : ""
+          }`}
+          key={i}
+          onClick={() => {
+            setPageSelected(page);
+            handlePageChange(page);
+          }}
+        >
           {page}
         </div>
       ))}
-      <div onClick={handlePageInc}>Próxima</div>
-
-      <div>PAGE SELECTED: {pageSelected}</div>
+      <div className="pagination__navigation" onClick={handlePageInc}>
+        Próxima
+      </div>
     </div>
   );
-});
+}

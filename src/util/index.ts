@@ -19,6 +19,7 @@ export {
   DEFAULT_FILTER,
   DEFAULT_SORT,
   DEFAULT_PRODUCTS_PER_PAGE,
-  QNT_OF_PAGES,
+  QNT_OF_PAGES_BASKET_PRODUCTS,
+  QNT_OF_PAGES_PRODUCTS_DEFAULT,
 } from "./variable";
-export { getProductsPerPage } from "./math";
+export { getAllProductsInPage, getBasketProductsInPage } from "./math";
