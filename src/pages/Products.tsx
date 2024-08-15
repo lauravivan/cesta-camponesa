@@ -180,7 +180,7 @@ export function Products({ products }: ProductsType) {
               {category ? `${category.toUpperCase()}` : "PRODUTOS"} DISPONÍVEIS
             </h3>
             {prods.length > 0 && (
-              <span>Foram encontrados {products.length} produtos</span>
+              <span>Foram encontrados {prods.length} produtos</span>
             )}
             {prods.length === 0 && <span>Não foram encontrados produtos</span>}
           </div>
