@@ -24,8 +24,6 @@ export function Products({ products }: ProductsType) {
   const [prods, setProds] = useState(() => {
     let p = [...products];
 
-    console.log(p);
-
     if (category) {
       p = p.filter(
         (product) =>
@@ -40,8 +38,11 @@ export function Products({ products }: ProductsType) {
       );
     }
 
-    return getAllProductsInPage(p, 1);
+    return p;
   });
+  const [prodsPerPage, setProdsPerPage] = useState(
+    getAllProductsInPage(prods, 1)
+  );
   const [sortSelected, setSortSelected] = useState("");
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const [filtersSelected, setFiltersSelected] = useState(getFilters());
@@ -113,7 +114,7 @@ export function Products({ products }: ProductsType) {
   };
 
   const handlePageChange = (page: number) => {
-    setProds((prev) => getAllProductsInPage([...prev], page));
+    setProdsPerPage(getAllProductsInPage(prods, page));
   };
 
   return (
@@ -183,9 +184,9 @@ export function Products({ products }: ProductsType) {
             )}
             {prods.length === 0 && <span>Não foram encontrados produtos</span>}
           </div>
-          {prods.length > 0 && (
+          {prodsPerPage.length > 0 && (
             <div className="cards">
-              {prods.map((product) => (
+              {prodsPerPage.map((product) => (
                 <Card key={product.id} product={product} isLinkable={true} />
               ))}
             </div>
