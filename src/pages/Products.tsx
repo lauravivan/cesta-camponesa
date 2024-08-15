@@ -21,7 +21,8 @@ export function Products({ products }: ProductsType) {
   const location = useLocation();
   const [isFilterActive, setIsFilterActive] = useState(false);
   const [isSortActive, setIsSortActive] = useState(false);
-  const [prods, setProds] = useState(() => {
+
+  function getFilteredProducts() {
     let p = [...products];
 
     if (category) {
@@ -39,9 +40,10 @@ export function Products({ products }: ProductsType) {
     }
 
     return p;
-  });
+  }
+
   const [prodsPerPage, setProdsPerPage] = useState(
-    getAllProductsInPage(prods, 1)
+    getAllProductsInPage(getFilteredProducts(), 1)
   );
   const [sortSelected, setSortSelected] = useState("");
   const [showFilterOptions, setShowFilterOptions] = useState(false);
@@ -114,7 +116,7 @@ export function Products({ products }: ProductsType) {
   };
 
   const handlePageChange = (page: number) => {
-    setProdsPerPage(getAllProductsInPage(prods, page));
+    setProdsPerPage(getAllProductsInPage(getFilteredProducts(), page));
   };
 
   return (
@@ -179,10 +181,14 @@ export function Products({ products }: ProductsType) {
             <h3>
               {category ? `${category.toUpperCase()}` : "PRODUTOS"} DISPONÍVEIS
             </h3>
-            {prods.length > 0 && (
-              <span>Foram encontrados {prods.length} produtos</span>
+            {getFilteredProducts().length > 0 && (
+              <span>
+                Foram encontrados {getFilteredProducts().length} produtos
+              </span>
             )}
-            {prods.length === 0 && <span>Não foram encontrados produtos</span>}
+            {getFilteredProducts().length === 0 && (
+              <span>Não foram encontrados produtos</span>
+            )}
           </div>
           {prodsPerPage.length > 0 && (
             <div className="cards">
