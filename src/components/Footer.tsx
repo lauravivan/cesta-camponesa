@@ -37,7 +37,7 @@ export function Footer() {
       <div className="footer__privacy">
         <span>Política de privacidade</span>
         <div className="footer__logo-container">
-          <img className="footer__logo" src="logo2.png" />
+          <img className="footer__logo" src="/logo2.png" />
         </div>
       </div>
     </footer>

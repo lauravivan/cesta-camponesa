@@ -13,7 +13,7 @@ export function Homepage() {
       <Header />
       <main className="homepage">
         <div className="homepage__main-img-container">
-          <img src="homepage-main.jpg" />
+          <img src="/homepage-main.jpg" />
         </div>
         <section
           className="homepage__section homepage__section--about-us"
@@ -57,7 +57,7 @@ export function Homepage() {
           </div>
 
           <div>
-            <img src="about-us.jpg" />
+            <img src="/about-us.jpg" />
           </div>
         </section>
         <section
@@ -100,7 +100,7 @@ export function Homepage() {
               </p>
             </div>
             <figure>
-              <img src="history-1.webp" />
+              <img src="/history-1.webp" />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -109,7 +109,7 @@ export function Homepage() {
           </div>
           <div>
             <figure>
-              <img src="history-2.webp" />
+              <img src="/history-2.webp" />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -148,7 +148,7 @@ export function Homepage() {
               </p>
             </div>
             <figure>
-              <img src="history-3.webp" />
+              <img src="/history-3.webp" />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016

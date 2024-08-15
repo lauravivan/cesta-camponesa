@@ -14,7 +14,7 @@ export function Cart() {
   return (
     <>
       <Header />
-      <main>
+      <main className="cart">
         <div>
           <h3>SUA CESTA</h3>
           <span></span>

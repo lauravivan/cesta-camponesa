@@ -66,13 +66,17 @@ ul {
 }
 
 .header-container[menu-dropdown-show="true"] ~ .homepage,
-.header-container[menu-dropdown-show="true"] ~ .products {
+.header-container[menu-dropdown-show="true"] ~ .products,
+.header-container[menu-dropdown-show="true"] ~ .cart,
+.header-container[menu-dropdown-show="true"] ~ .product {
   margin-top: $MENU-DROPDOWN-HEIGHT;
 }
 
 @media (max-width: $MEDIA-MOBILE) {
   .header-container[menu-dropdown-show="true"] ~ .homepage,
-  .header-container[menu-dropdown-show="true"] ~ .products {
+  .header-container[menu-dropdown-show="true"] ~ .products,
+  .header-container[menu-dropdown-show="true"] ~ .cart,
+  .header-container[menu-dropdown-show="true"] ~ .product {
     margin-top: $MENU-DROPDOWN-MOBILE-HEIGHT;
   }
 }

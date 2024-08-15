@@ -18,7 +18,7 @@ export const productTypes: string[] = ["lata"];
 
 export const products: ProductType[] = Array.from({ length: 55 }, () => ({
   id: uuidv4(),
-  imgSrc: "biscuit.jpg",
+  imgSrc: "/biscuit.jpg",
   productCategory: productCategories[2],
   productType: "teste",
   productName: `teste-${Math.floor(Math.random() * 100000)}`,

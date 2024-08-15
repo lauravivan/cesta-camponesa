@@ -67,13 +67,17 @@ ul {
 }
 
 .header-container[menu-dropdown-show=true] ~ .homepage,
-.header-container[menu-dropdown-show=true] ~ .products {
+.header-container[menu-dropdown-show=true] ~ .products,
+.header-container[menu-dropdown-show=true] ~ .cart,
+.header-container[menu-dropdown-show=true] ~ .product {
   margin-top: 320px;
 }
 
 @media (max-width: 990px) {
   .header-container[menu-dropdown-show=true] ~ .homepage,
-  .header-container[menu-dropdown-show=true] ~ .products {
+  .header-container[menu-dropdown-show=true] ~ .products,
+  .header-container[menu-dropdown-show=true] ~ .cart,
+  .header-container[menu-dropdown-show=true] ~ .product {
     margin-top: 30px;
   }
 }
