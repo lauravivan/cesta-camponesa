@@ -21,9 +21,24 @@ export const products: ProductType[] = Array.from({ length: 55 }, () => ({
   imgSrc: "/biscuit.jpg",
   productCategory: productCategories[2],
   productType: "teste",
-  productName: `teste-${Math.floor(Math.random() * 100000)}`,
+  productName: `BISCOITOS BANHADOS NO CHOCOLATE ${Math.floor(
+    Math.random() * 100000
+  )}`,
   productPrice: 30,
   productStock: 10,
+  productDesc: `Lata com Biscoitos Banhados no Chocolate 45% ao Leite – 300g
+
+Delicie-se com a combinação perfeita de crocância e sabor com nossa lata de biscoitos banhados em chocolate 45% ao leite. Cada biscoito é cuidadosamente coberto com um generoso layer de chocolate ao leite, criando uma experiência irresistível para os amantes de doces.
+
+O chocolate de alta qualidade, com 45% de cacau, proporciona um sabor rico e aveludado, equilibrando a doçura com notas sutis de cacau. O toque crocante dos biscoitos se une à suavidade do chocolate, criando uma explosão de texturas e sabores a cada mordida.
+
+A embalagem em lata é prática e elegante, mantendo os biscoitos frescos e protegidos, perfeita para presentear ou saborear em qualquer momento do dia.
+
+Características:
+Quantidade: 300g
+Chocolate ao leite com 45% de cacau
+Biscoitos crocantes e saborosos
+Embalagem prática e elegante`,
 }));
 
 export const filters: FilterType[] = [

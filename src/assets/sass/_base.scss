@@ -65,6 +65,10 @@ ul {
   }
 }
 
+.react-multi-carousel-track {
+  column-gap: 20px !important;
+}
+
 .header-container[menu-dropdown-show="true"] ~ .homepage,
 .header-container[menu-dropdown-show="true"] ~ .products,
 .header-container[menu-dropdown-show="true"] ~ .cart,

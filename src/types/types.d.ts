@@ -12,6 +12,7 @@ interface ProductType {
   productName: string;
   productPrice: number;
   productStock: number;
+  productDesc: string;
   imgSec?: [string, string, string];
 }
 

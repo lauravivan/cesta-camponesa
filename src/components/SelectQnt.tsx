@@ -25,7 +25,7 @@ export const SelectQnt = forwardRef<HTMLDivElement, SelectQntType>(
     };
 
     return (
-      <div>
+      <div className="select-qnt">
         <div onClick={handleSubtraction}>
           <ion-icon name="remove-sharp"></ion-icon>
         </div>

@@ -95,26 +95,26 @@ export function Product() {
       <main className="product">
         <Breadcrumb crumbs={crumbs} />
         <div className="product__info">
-          <div>
-            <div>
+          <div className="product__info--imgs">
+            <div className="product__info--imgs-main">
               <img src={product.imgSrc} />
             </div>
-            <div>
+            <div className="product__info--imgs--gallery">
               <div>
-                <img />
+                <img src={product.imgSrc} />
               </div>
               <div>
-                <img />
+                <img src={product.imgSrc} />
               </div>
               <div>
-                <img />
+                <img src={product.imgSrc} />
               </div>
             </div>
           </div>
-          <div>
+          <div className="product__info--info">
             <div>
               <h1>{product.productName.toUpperCase()}</h1>
-              <p></p>
+              <p>{product.productDesc}</p>
               <span>Preço: R${product.productPrice},00</span>
               <div>
                 <span>Quantidade:</span>
@@ -122,7 +122,13 @@ export function Product() {
               </div>
             </div>
             <div>
-              <button onClick={handleCartAddition}>Colocar na cesta</button>
+              <button
+                type="button"
+                className="button"
+                onClick={handleCartAddition}
+              >
+                Colocar na cesta
+              </button>
             </div>
           </div>
         </div>
