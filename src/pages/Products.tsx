@@ -122,7 +122,7 @@ export function Products({ products }: ProductsType) {
   return (
     <>
       <Header />
-      <main className="products">
+      <main className="products main">
         <div className="products__header">
           <Breadcrumb crumbs={crumbs} />
           <div className="products__header--buttons">

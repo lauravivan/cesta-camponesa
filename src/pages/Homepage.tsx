@@ -11,7 +11,7 @@ export function Homepage() {
   return (
     <>
       <Header />
-      <main className="homepage">
+      <main className="homepage main">
         <div className="homepage__main-img-container">
           <img src="/homepage-main.jpg" />
         </div>

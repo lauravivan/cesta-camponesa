@@ -92,7 +92,7 @@ export function Product() {
   return (
     <>
       <Header />
-      <main className="product">
+      <main className="product main">
         <Breadcrumb crumbs={crumbs} />
         <div className="product__info">
           <div className="product__info--imgs">
