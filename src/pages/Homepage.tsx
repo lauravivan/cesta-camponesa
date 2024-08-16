@@ -13,7 +13,10 @@ export function Homepage() {
       <Header />
       <main className="homepage main">
         <div className="homepage__main-img-container">
-          <img src="/homepage-main.jpg" />
+          <img
+            src="/homepage-main.jpg"
+            alt="Feira disponibilizando frutas em cestas, mostrando a bandeira da cesta camponesa"
+          />
         </div>
         <section
           className="homepage__section homepage__section--about-us"
@@ -57,7 +60,10 @@ export function Homepage() {
           </div>
 
           <div>
-            <img src="/about-us.jpg" />
+            <img
+              src="/about-us.jpg"
+              alt="Mesa com a logo do MPA com comidas distribuídas"
+            />
           </div>
         </section>
         <section
@@ -100,7 +106,10 @@ export function Homepage() {
               </p>
             </div>
             <figure>
-              <img src="/history-1.webp" />
+              <img
+                src="/history-1.webp"
+                alt="Camponeses do MPA participam em Brasília da luta contra o Golpe em 2016"
+              />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -109,7 +118,10 @@ export function Homepage() {
           </div>
           <div>
             <figure>
-              <img src="/history-2.webp" />
+              <img
+                src="/history-2.webp"
+                alt="Camponeses do MPA participam em Brasília da luta contra o Golpe em 2016"
+              />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -148,7 +160,10 @@ export function Homepage() {
               </p>
             </div>
             <figure>
-              <img src="/history-3.webp" />
+              <img
+                src="/history-3.webp"
+                alt="Camponeses do MPA participam em Brasília da luta contra o Golpe em 2016"
+              />
               <figcaption>
                 Camponeses do MPA participam em Brasília da luta contra o Golpe
                 em 2016
@@ -244,8 +259,18 @@ export function Homepage() {
           <span>DESEJA RECEBER NOVIDADES?</span>
           <form>
             <div>
-              <input className="input" placeholder="Seu nome" />
-              <input className="input" placeholder="Seu e-mail" />
+              <input
+                name="user-name"
+                id="user-name"
+                className="input"
+                placeholder="Seu nome"
+              />
+              <input
+                name="user-mail"
+                id="user-mail"
+                className="input"
+                placeholder="Seu e-mail"
+              />
             </div>
             <button
               className="button"

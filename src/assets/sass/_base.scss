@@ -2,6 +2,17 @@ a {
   all: unset;
 }
 
+a {
+  cursor: pointer;
+}
+
+li a {
+  &:hover {
+    font-weight: 900;
+    border-bottom: 2px solid $black;
+  }
+}
+
 :root {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;

@@ -5,6 +5,15 @@ a {
   all: unset;
 }
 
+a {
+  cursor: pointer;
+}
+
+li a:hover {
+  font-weight: 900;
+  border-bottom: 2px solid #2f2c2c;
+}
+
 :root {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
@@ -113,13 +122,6 @@ ul {
   display: flex;
   flex: 1;
   justify-content: space-evenly;
-}
-.header-dropdown li {
-  cursor: pointer;
-}
-.header-dropdown li:hover > a {
-  font-weight: 900;
-  border-bottom: 2px solid #2f2c2c;
 }
 .header-dropdown .header-dropdown-products .menu-dropdown__category ul {
   display: grid;
@@ -408,6 +410,9 @@ ul {
   padding: 50px;
   border-radius: 100%;
   width: min-content;
+}
+.homepage__section--how-it-works > div > figure > div:hover {
+  background-color: #bbf299;
 }
 .homepage__section--how-it-works > div > figure > div > ion-icon {
   font-size: 100px;

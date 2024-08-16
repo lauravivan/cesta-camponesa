@@ -29,7 +29,7 @@ export function Footer() {
               <a href="#about-us">Quem somos</a>
             </li>
             <li>
-              <a href="#gathering">Encontros nacionais</a>
+              <a href="#meetings">Encontros nacionais</a>
             </li>
           </ul>
         </div>
@@ -37,7 +37,11 @@ export function Footer() {
       <div className="footer__privacy">
         <span>Política de privacidade</span>
         <div className="footer__logo-container">
-          <img className="footer__logo" src="/logo2.png" />
+          <img
+            className="footer__logo"
+            src="/logo2.png"
+            alt="Logo da rede bem viver"
+          />
         </div>
       </div>
     </footer>

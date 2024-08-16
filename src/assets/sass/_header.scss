@@ -28,15 +28,6 @@
     justify-content: space-evenly;
   }
 
-  li {
-    cursor: pointer;
-
-    &:hover > a {
-      font-weight: 900;
-      border-bottom: 2px solid $black;
-    }
-  }
-
   .header-dropdown-products {
     .menu-dropdown {
       &__category {

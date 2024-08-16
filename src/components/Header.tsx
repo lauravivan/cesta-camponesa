@@ -45,7 +45,7 @@ export function Header() {
         <header className="header">
           <div className="header__logo-container">
             <Link to={"/"}>
-              <img src="/logo.png" />
+              <img src="/logo.png" alt="Logo do MPA" />
             </Link>
           </div>
           <div

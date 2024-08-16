@@ -103,6 +103,10 @@
             border-radius: 100%;
             width: min-content;
 
+            &:hover {
+              background-color: $green;
+            }
+
             > ion-icon {
               font-size: 100px;
             }
