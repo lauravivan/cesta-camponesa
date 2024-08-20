@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
-  column-gap: 15px;
+  gap: 15px;
+  flex-wrap: wrap;
 
   &__navigation,
   &__page-number {
@@ -22,4 +23,7 @@
       background-color: rgba(0, 0, 0, 0.2);
     }
   }
+}
+
+@media (max-width: $MEDIA-MOBILE) {
 }

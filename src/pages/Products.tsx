@@ -1,16 +1,22 @@
 import { useParams, useLocation } from "react-router-dom";
-import { Header, Footer, Breadcrumb, Pagination } from "../components";
+import {
+  Header,
+  Footer,
+  Breadcrumb,
+  Pagination,
+  Dropdown,
+} from "../components";
 import { Card } from "../components/Card";
 import {
   filters,
-  getFilters,
-  setFilters,
-  setSort,
   sorts,
   getAllProductsInPage,
   QNT_OF_PAGES_PRODUCTS_DEFAULT,
+  getProductsByNavigationCategory,
+  getProductsBySearch,
+  getProductsByFilter,
 } from "../util";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 interface ProductsType {
   products: ProductType[];
@@ -19,36 +25,22 @@ interface ProductsType {
 export function Products({ products }: ProductsType) {
   const { category } = useParams();
   const location = useLocation();
-  const [isFilterActive, setIsFilterActive] = useState(false);
-  const [isSortActive, setIsSortActive] = useState(false);
-
-  function getFilteredProducts() {
-    let p = [...products];
-
+  const [pageSelected, setPageSelected] = useState(1);
+  const [filteredProducts, setFilteredProducts] = useState(() => {
     if (category) {
-      p = p.filter(
-        (product) =>
-          product.productCategory ===
-          category.trim().toLowerCase().replaceAll("%20", " ")
-      );
+      return getProductsByNavigationCategory(products, category);
     } else if (location.search) {
-      const userSearch = location.search.split("=")[1];
-
-      p = p.filter((prod) =>
-        prod.productName.toLowerCase().includes(userSearch.toLowerCase())
-      );
+      return getProductsBySearch(products, location.search);
     }
 
-    return p;
-  }
-
-  const [prodsPerPage, setProdsPerPage] = useState(
-    getAllProductsInPage(getFilteredProducts(), 1)
-  );
-  const [sortSelected, setSortSelected] = useState("");
-  const [showFilterOptions, setShowFilterOptions] = useState(false);
-  const [filtersSelected, setFiltersSelected] = useState(getFilters());
+    return products;
+  });
   const firstPage = location.pathname.split("/")[1];
+  const [filterContainerContent, setFilterContainerContent] =
+    useState<ReactNode>(<div></div>);
+  const [paginatedProducts, setPaginatedProducts] = useState(
+    getAllProductsInPage(filteredProducts, pageSelected)
+  );
 
   const crumbs = [
     {
@@ -62,61 +54,50 @@ export function Products({ products }: ProductsType) {
   ];
 
   useEffect(() => {
-    setSort(sortSelected);
-  }, [sortSelected]);
-
-  useEffect(() => {
-    setFilters(filtersSelected);
-  }, [filtersSelected]);
+    setPaginatedProducts(getAllProductsInPage(filteredProducts, pageSelected));
+  }, [filteredProducts, pageSelected]);
 
   const handleFilterClick = () => {
-    setIsFilterActive((active) => !active);
-  };
-
-  const handleSortClick = () => {
-    setIsSortActive((active) => !active);
-  };
-
-  const handleSortSelection = (sort: string) => {
-    setSortSelected(sort);
-  };
-
-  const handleFilterSelection = (desc: string, option: string | number) => {
-    setFiltersSelected((prevVal) => {
-      const fs = [...prevVal];
-
-      const descFind = fs.filter((val) => val.desc === desc)[0];
-      const optionsFind = fs.filter((val) => {
-        if (val.desc === desc) {
-          return val.options;
-        }
-      })[0].options;
-
-      if (descFind) {
-        if (!optionsFind.includes(option)) {
-          for (const f of fs) {
-            if (descFind.desc === f.desc) {
-              f.options.push(option);
-            }
-          }
-        }
-      } else {
-        fs.push({
-          desc: desc,
-          options: [option],
-        });
+    setFilterContainerContent((prevVal) => {
+      if (Array.isArray(prevVal)) {
+        return <div></div>;
       }
 
-      return fs;
+      return filters.map((filter, i) => {
+        return (
+          <Dropdown
+            key={i}
+            desc={filter.desc}
+            options={filter.options}
+            handleOptionSelect={handleOptionSelect}
+          />
+        );
+      });
     });
   };
 
-  const handleFilterOptions = () => {
-    setShowFilterOptions((showOptionsState) => !showOptionsState);
+  const handleSortClick = () => {
+    setFilterContainerContent((prevVal) => {
+      if (Array.isArray(prevVal)) {
+        return <div></div>;
+      }
+
+      return sorts.map((sort, i) => {
+        return (
+          <div className="products__sort-btn" key={i}>
+            {sort}
+          </div>
+        );
+      });
+    });
   };
 
   const handlePageChange = (page: number) => {
-    setProdsPerPage(getAllProductsInPage(getFilteredProducts(), page));
+    setPageSelected(page);
+  };
+
+  const handleOptionSelect = (filters: FilterType[]) => {
+    setFilteredProducts(getProductsByFilter(filteredProducts, filters));
   };
 
   return (
@@ -126,73 +107,30 @@ export function Products({ products }: ProductsType) {
         <div className="products__header">
           <Breadcrumb crumbs={crumbs} />
           <div className="products__header--buttons">
-            <div onClick={handleFilterClick}>
+            <div onClick={handleFilterClick} className="button-2">
               <ion-icon name="filter-sharp"></ion-icon>
             </div>
-            <div onClick={handleSortClick}>
+            <div onClick={handleSortClick} className="button-2">
               <ion-icon name="swap-vertical-sharp"></ion-icon>
             </div>
           </div>
         </div>
         <div className="products__filter-container">
-          {isFilterActive &&
-            filters.map((filter, i) => (
-              <div key={i} className="products__filter-btn">
-                <div
-                  className="products__filter-btn__btn"
-                  onClick={handleFilterOptions}
-                >
-                  {filter.desc}
-                </div>
-                <div
-                  className={`filter-btn__filter-options ${
-                    showFilterOptions ? "filter-btn__filter-options-show" : ""
-                  }`}
-                >
-                  <span>reset</span>
-                  {filter.options.map((option, i) => (
-                    <span
-                      key={i}
-                      onClick={handleFilterSelection.bind(
-                        self,
-                        filter.desc,
-                        option
-                      )}
-                    >
-                      {option}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          {isSortActive &&
-            sorts.map((sort, i) => (
-              <div
-                className="products__sort-btn"
-                key={i}
-                onClick={handleSortSelection.bind(self, sort)}
-              >
-                {sort}
-              </div>
-            ))}
+          {filterContainerContent}
         </div>
         <div className="products__products">
           <div className="products__products--title-container">
-            <h3>
-              {category ? `${category.toUpperCase()}` : "PRODUTOS"} DISPONÍVEIS
-            </h3>
-            {getFilteredProducts().length > 0 && (
-              <span>
-                Foram encontrados {getFilteredProducts().length} produtos
-              </span>
+            <h3>PRODUTOS DISPONÍVEIS</h3>
+            {filteredProducts.length > 0 && (
+              <span>Foram encontrados {filteredProducts.length} produtos</span>
             )}
-            {getFilteredProducts().length === 0 && (
+            {filteredProducts.length === 0 && (
               <span>Não foram encontrados produtos</span>
             )}
           </div>
-          {prodsPerPage.length > 0 && (
+          {paginatedProducts.length > 0 && (
             <div className="cards">
-              {prodsPerPage.map((product) => (
+              {paginatedProducts.map((product) => (
                 <Card key={product.id} product={product} isLinkable={true} />
               ))}
             </div>

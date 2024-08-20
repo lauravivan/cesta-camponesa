@@ -15,12 +15,17 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+
+    ion-icon {
+      font-size: 15px;
+    }
   }
 
   div:nth-child(2) {
     padding: 5px 10px;
     background-color: $white;
     border-radius: 5px;
+    font-size: 15px;
   }
 
   div:nth-child(3) {

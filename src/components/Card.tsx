@@ -17,7 +17,7 @@ export function Card({
   const cardContent = (
     <article className="card">
       <div className="card__img-container">
-        <img src={product.imgSrc} />
+        <img src={product.imgPath} />
       </div>
       <div className="card__content">
         <span className="card__category">

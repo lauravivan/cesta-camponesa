@@ -14,11 +14,11 @@ export const productCategories: string[] = [
   "outros",
 ];
 
-export const productTypes: string[] = ["lata"];
+export const productTypes: string[] = ["lata", "kg"];
 
-export const products: ProductType[] = Array.from({ length: 55 }, () => ({
+export const products: ProductType[] = Array.from({ length: 57 }, () => ({
   id: uuidv4(),
-  imgSrc: "/biscuit.jpg",
+  imgPath: "/biscuit.jpg",
   productCategory: productCategories[2],
   productType: "teste",
   productName: `BISCOITOS BANHADOS NO CHOCOLATE ${Math.floor(
@@ -56,7 +56,9 @@ export const filters: FilterType[] = [
   },
   {
     desc: "Preço",
-    options: products.map((product) => product.productPrice),
+    options: Array.from(
+      new Set(products.map((product) => "R$" + product.productPrice.toString()))
+    ),
   },
 ];
 

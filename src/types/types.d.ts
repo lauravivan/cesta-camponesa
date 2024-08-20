@@ -6,7 +6,7 @@ declare namespace JSX {
 
 interface ProductType {
   id: string;
-  imgSrc: string;
+  imgPath: string;
   productCategory: string;
   productType: string;
   productName: string;
@@ -23,7 +23,7 @@ interface CrumbType {
 
 interface FilterType {
   desc: string;
-  options: (string | number)[];
+  options: string[];
 }
 
 interface BasketType {

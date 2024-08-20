@@ -15,11 +15,11 @@ export function Cart() {
     <>
       <Header />
       <main className="cart main">
-        <div>
+        <div className="cart__title">
           <h3>SUA CESTA</h3>
-          <span></span>
+          <span>Há um total de 20 itens na lista</span>
         </div>
-        <div className="cards">
+        <div className="cart__cards cards">
           {productsToShow.length > 0 &&
             productsToShow.map((basket) => (
               <Card
@@ -30,14 +30,17 @@ export function Cart() {
               />
             ))}
         </div>
-        <div>
+        <div className="cart__footer">
           <Pagination
             handlePageChange={handlePageChange}
             qntOfPages={QNT_OF_PAGES_BASKET_PRODUCTS}
           />
-          <div>
-            <span>Total: </span>
-            <button></button>
+          <div className="cart__footer__total">
+            <span>
+              Total:{" "}
+              <span className="cart__footer__total--value">R$200,00</span>
+            </span>
+            <button className="button">Continuar</button>
           </div>
         </div>
       </main>

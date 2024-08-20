@@ -97,17 +97,17 @@ export function Product() {
         <div className="product__info">
           <div className="product__info--imgs">
             <div className="product__info--imgs-main">
-              <img src={product.imgSrc} />
+              <img src={product.imgPath} />
             </div>
             <div className="product__info--imgs--gallery">
               <div>
-                <img src={product.imgSrc} />
+                <img src={product.imgPath} />
               </div>
               <div>
-                <img src={product.imgSrc} />
+                <img src={product.imgPath} />
               </div>
               <div>
-                <img src={product.imgSrc} />
+                <img src={product.imgPath} />
               </div>
             </div>
           </div>

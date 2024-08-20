@@ -5,3 +5,4 @@ export { Card } from "./Card";
 export { Breadcrumb } from "./Breadcrumb";
 export { SelectQnt } from "./SelectQnt";
 export { Pagination } from "./Pagination";
+export { Dropdown } from "./Dropdown";

@@ -1,0 +1,50 @@
+.dropdown {
+  &__btn {
+    background-color: $gray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+
+    > span {
+      flex: 1;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__options {
+    display: none;
+  }
+
+  &__options-show {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 20px 10px;
+    background-color: $gray;
+    margin-top: 5px;
+    row-gap: 5px;
+
+    span {
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    &__option {
+      &--selected {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

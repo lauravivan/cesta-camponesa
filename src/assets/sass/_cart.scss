@@ -1,0 +1,27 @@
+.cart {
+  &__title {
+    text-align: center;
+  }
+
+  &__footer {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+
+    .pagination {
+      margin-top: auto;
+    }
+
+    &__total {
+      display: flex;
+      flex-direction: column;
+
+      &--value {
+        font-size: 23px;
+        font-weight: 900;
+      }
+    }
+  }
+}

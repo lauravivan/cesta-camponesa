@@ -62,6 +62,16 @@ ul {
   cursor: pointer;
 }
 
+.button-2 {
+  padding: 8px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray;
+  }
+}
+
 .breadcrumb {
   display: flex;
   column-gap: 5px;
@@ -88,6 +98,9 @@ ul {
 .main.product,
 .main.cart {
   padding: 55px 20px;
+}
+
+.active-filter {
 }
 
 @media (max-width: $MEDIA-MOBILE) {
